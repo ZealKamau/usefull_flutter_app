@@ -30,16 +30,40 @@ class MyHomePage extends StatelessWidget {
           title: Text('Shop Ap'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
               width: double.infinity,
               child: Card(
                 color: Colors.white,
-                elevation: 50,
+                elevation: 10,
                 child: Text(
                   'CHART!',
+                ),
+              ),
+            ),
+            Card(
+              elevation: 5,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: "Title"),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: "Amount"),
+                    ),
+                    TextButton(
+                      child: Text("Add Transaction"),
+                      style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all<Color>(
+                              Colors.deepOrange)),
+                      onPressed: () {},
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -78,7 +102,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          DateFormat().format(tx.date),
+                          DateFormat.MMMMEEEEd().format(tx.date),
                           style: TextStyle(color: Colors.grey, fontSize: 12),
                         ),
                       ],
