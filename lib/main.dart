@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,7 +24,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black38,
+        backgroundColor: Color(0xFFFFFDD0),
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
           title: Text('Shop Ap'),
@@ -35,7 +36,7 @@ class MyHomePage extends StatelessWidget {
             Container(
               width: double.infinity,
               child: Card(
-                color: Colors.amberAccent,
+                color: Colors.white,
                 elevation: 50,
                 child: Text(
                   'CHART!',
@@ -45,7 +46,44 @@ class MyHomePage extends StatelessWidget {
             Column(
               children: transactions.map((tx) {
                 return Card(
-                  child: Text(tx.title),
+                  child: Row(children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.deepPurple,
+                          width: 1,
+                        ),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        "Kshs ${tx.amount}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.deepPurple),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tx.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          DateFormat().format(tx.date),
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                      ],
+                    )
+                  ]),
                 );
               }).toList(),
             ),
